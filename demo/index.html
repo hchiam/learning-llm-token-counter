@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Counter Demo</title>
+    <style>
+        #modelName,
+        #output {
+            color: white;
+            font-weight: bold;
+            padding: 0.25rem;
+            width: fit-content;
+            border-radius: 0.25rem;
+            color: white;
+            font-weight: bold;
+            padding: 0.25rem;
+            width: fit-content;
+            border-radius: 0.25rem;
+        }
+        #modelName {
+            background:green;
+        }
+        #output {
+            background: red;
+        }
+    </style>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@dqbd/tiktoken@1.0.15/tiktoken.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/llama-tokenizer-js@1.2.2/llama-tokenizer.min.js"></script> -->
+</head>
+<body>
+    <h1>Token Counter: 
+        <select id="select">
+            <option value="" disabled="disabled">Choose a token counter</option>
+            <option value="1">js-tiktoken</option>
+            <option value="2">xenova-transformers.js</option>
+            <option value="3">llama-tokenizer-js</option>
+        </select></h1>
+    <p>Model name: <span id="modelName"></span></p>
+    <textarea id="input" placeholder="Type text here."></textarea>
+    <p id="output"></p>
+    <script type="module" src="index-1-js-tiktoken.js"></script>
+    <script type="module" src="index-2-xenova-transformers.js"></script>
+    <script type="module" src="index-3-llama-tokenizer-js.js"></script>
+    <script type="module">
+        import {modelName as m1} from './index-1-js-tiktoken.js'
+        import {processInput as p1} from './index-1-js-tiktoken.js';
+
+        import {modelName as m2} from './index-2-xenova-transformers.js'
+        import {processInput as p2} from './index-2-xenova-transformers.js';
+
+        import {modelName as m3} from './index-3-llama-tokenizer-js.js'
+        import {processInput as p3} from './index-3-llama-tokenizer-js.js';
+        
+        input.addEventListener('keyup', async () => {
+            output.innerText = await processInput(input.value);
+        });
+        input.addEventListener('change', async () => {
+            output.innerText = await processInput(input.value);
+        });
+
+        modelName.innerText = m1;
+        select.addEventListener('change', async () => {
+            switch (select.value) {
+                case '1':
+                    modelName.innerText = m1;
+                    break;
+                case '2':
+                    modelName.innerText = m2;
+                    break;
+                case '3':
+                    modelName.innerText = m3;
+                    break;
+                default:
+                    modelName.innerText = m1;
+                    break;
+            }
+            output.innerText = await processInput(input.value);
+        });
+
+        ;(async () => {
+            output.innerText = await processInput(input.value);
+        })();
+
+        async function processInput(input) {
+            switch (select.value) {
+                case '1':
+                    return await p1(input);
+                case '2':
+                    return await p2(input);
+                case '3':
+                    return await p3(input);
+                default:
+                    return await p1(input);
+            }
+        }
+    </script>
+</body>
+</html>
