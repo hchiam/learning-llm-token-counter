@@ -1,47 +1,37 @@
-# Learning template [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://github.com/hchiam/learning-template/blob/main/LICENSE)
+# Learning about LLM token counters
 
 Just one of the things I'm learning. https://github.com/hchiam/learning
 
-(To use this template fast with [`gh` CLI](https://github.com/hchiam/learning-gh), you can run [`gh repo create --template learning-template learning-...`](https://cli.github.com/manual/gh_repo_create) or [set up a custom shortcut CLI command](https://github.com/hchiam/learning-bash-scripts/blob/main/gh-cli-create-learning-repo-from-template.sh).)
+Tell the user ahead of time that there’s too many tokens in the input.
 
-(To create a convenience script repo, use this template instead: https://github.com/hchiam/convenience)
+For example: here’s [OpenAI token counter](https://platform.openai.com/tokenizer) that could be implemented in JS with [`js-tiktoken`](https://www.npmjs.com/package/js-tiktoken):
 
-(To create a website fast, use a code generator like [`create-next-app`](https://github.com/hchiam/learning-nextjs), [`sapper`](https://github.com/hchiam/learning-sapper), a [svelte template](https://github.com/sveltejs/template), [`yo`](https://yeoman.io/generators), or my [project-template](https://github.com/hchiam/project-template))
-
-(Use the redirect template https://github.com/hchiam/learning-redirect to enhance discoverability. Or [set up a custom shortcut CLI command](https://github.com/hchiam/learning-bash-scripts/blob/main/gh-cli-create-learning-redirect-repo-from-template.sh))
-
-<!-- Add reference link(s) here -->
-
-## From scratch
-
-Using [`yarn`](https://github.com/hchiam/learning-yarn):
-
-```bash
-yarn add
+```js
+import { getEncoding, encodingForModel } from "js-tiktoken";
+const tokenCount = getEncoding(modelName).encode(text).length;
 ```
 
-Or with `npm`:
+Or maybe for other models like Meta LLama, use `@xenova/transformers`:
 
-```bash
-npm install
+- https://www.npmjs.com/package/@xenova/transformers
+- https://huggingface.co/docs/transformers.js/main/en/api/models#module_models.LlamaPreTrainedModel
+- https://huggingface.co/docs/transformers.js/main/en/api/tokenizers#tokenizers
+
+* [LICENSE](https://github.com/xenova/transformers.js/blob/main/LICENSE)
+
+```js
+import { AutoTokenizer } from "@xenova/transformers";
+const tokenizer = await AutoTokenizer.from_pretrained(modelName);
+const { input_ids } = await tokenizer(text);
+const tokenCount = input_ids.size; // ?
 ```
 
-And then:
+Or maybe simply with `llama-tokenizer-js`:
 
-```bash
+- https://github.com/belladoreai/llama-tokenizer-js?tab=readme-ov-file#-llama-tokenizer-js-
+- [LICENSE](https://github.com/belladoreai/llama-tokenizer-js/blob/master/LICENSE.md)
 
-```
-
-## Starting by testing out this repo <!-- Replace "template"s and "# and then ..."s in this section -->
-
-Using [`yarn`](https://github.com/hchiam/learning-yarn): (triple-click to select all)
-
-```bash
-git clone https://github.com/hchiam/learning-template.git && cd learning-template && yarn; # and then ...
-```
-
-Or with `npm`: (triple-click to select all)
-
-```bash
-git clone https://github.com/hchiam/learning-template.git && cd learning-template && npm install; # and then ...
+```js
+import llamaTokenizer from "llama-tokenizer-js";
+const tokenCount = llamaTokenizer.encode(text).length;
 ```
