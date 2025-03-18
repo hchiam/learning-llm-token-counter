@@ -2,7 +2,7 @@
 
 Just one of the things I'm learning. <https://github.com/hchiam/learning>
 
-Tell the user ahead of time that there’s too many tokens in the input.
+Could be used to tell the user ahead of time that there’s too many tokens in the input.
 
 ## Notes
 
