@@ -4,6 +4,8 @@ Just one of the things I'm learning. <https://github.com/hchiam/learning>
 
 Could be used to tell the user ahead of time that there’s too many tokens in the input.
 
+The demo of this repo lets you check for a few different LLMs.
+
 ## Notes
 
 For example: here’s [OpenAI token counter](https://platform.openai.com/tokenizer) that could be implemented in JS with [`js-tiktoken`](https://www.npmjs.com/package/js-tiktoken):
