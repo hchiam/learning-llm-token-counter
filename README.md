@@ -1,6 +1,6 @@
 # Learning about LLM token counters
 
-Just one of the things I'm learning. https://github.com/hchiam/learning
+Just one of the things I'm learning. <https://github.com/hchiam/learning>
 
 Tell the user ahead of time that there’s too many tokens in the input.
 
@@ -15,11 +15,11 @@ const tokenCount = getEncoding(modelName).encode(text).length;
 
 Or maybe for other models, use `@xenova/transformers`:
 
-- https://www.npmjs.com/package/@xenova/transformers
-- https://huggingface.co/docs/transformers.js/main/en/api/models#module_models.LlamaPreTrainedModel
-- https://huggingface.co/docs/transformers.js/main/en/api/tokenizers#tokenizers
+- <https://www.npmjs.com/package/@xenova/transformers>
+- <https://huggingface.co/docs/transformers.js/main/en/api/models#module_models.LlamaPreTrainedModel>
+- <https://huggingface.co/docs/transformers.js/main/en/api/tokenizers#tokenizers>
 
-* [LICENSE](https://github.com/xenova/transformers.js/blob/main/LICENSE)
+- [LICENSE](https://github.com/xenova/transformers.js/blob/main/LICENSE)
 
 ```js
 import { AutoTokenizer } from "@xenova/transformers";
@@ -30,7 +30,7 @@ const tokenCount = input_ids.size; // ?
 
 Or maybe use `llama-tokenizer-js` for Meta LLama:
 
-- https://github.com/belladoreai/llama-tokenizer-js?tab=readme-ov-file#-llama-tokenizer-js-
+- <https://github.com/belladoreai/llama-tokenizer-js?tab=readme-ov-file#-llama-tokenizer-js->
 - [LICENSE](https://github.com/belladoreai/llama-tokenizer-js/blob/master/LICENSE.md)
 
 ```js
@@ -40,9 +40,9 @@ const tokenCount = llamaTokenizer.encode(text).length;
 
 ## Demos
 
-To run repo's demo locally: you need `yarn` and `vite` so you can run `cd demo; yarn dev;` --> http://localhost:5173/
+To run repo's demo locally: you need `yarn` and `vite` so you can run `cd demo; yarn dev;` --> <http://localhost:5173/>
 
-Or just go to this live demo: https://hchiam-llm-token-count.surge.sh/
+Or just go to this live demo: <https://hchiam-llm-token-count.surge.sh/>
 
 ![](screenshot1.png)
 ![](screenshot2.png)
